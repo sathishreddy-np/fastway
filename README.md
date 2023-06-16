@@ -1,6 +1,6 @@
 # Fastway
 
-This repository contains the source code for the Fastway project.
+This repository contains the source code for the Fastway project by SATHISH KUMAR REDDY NUKA PAPU GARI.
 
 ## Installation
 
