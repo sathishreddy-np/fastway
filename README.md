@@ -11,7 +11,7 @@ git clone https://github.com/sathishreddy-np/fastway.git
 # Navigate to the project directory
 cd fastway
 
-# Copy the .env.example file to .env
+# Copy the .env.example file to .env  in Linux Systems
 cp .env.example .env
 ```
 
