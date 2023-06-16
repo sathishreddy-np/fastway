@@ -41,4 +41,3 @@ Open the `.env` file and update the following environment variables:
 | DB_PASSWORD     | Your MySQL password     |
 
 Make sure to replace `Your MySQL username` and `Your MySQL password` with the appropriate values for your MySQL database configuration.
-```
