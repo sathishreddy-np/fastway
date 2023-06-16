@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Bitcoin extends Model
+class BitToken extends Model
 {
     use HasFactory;
-
-    public function bittokens(){
-        return $this->hasMany(BitToken::class);
+    public function bitcoin(){
+        return $this->belongsTo(Bitcoin::class);
     }
 }
