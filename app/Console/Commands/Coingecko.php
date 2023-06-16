@@ -49,7 +49,7 @@ class Coingecko extends Command
                         $bitcoin->symbol = $coin['symbol'];
                         $bitcoin->name = $coin['name'];
                         $bitcoin->save();
-
+                        # Store Platform Names and Tokens
                         if(count($coin["platforms"]) > 0){
                             foreach ($coin["platforms"] as $name => $token) {
                                 $bit_token = new BitToken();
