@@ -1,4 +1,3 @@
-```markdown
 # Fastway
 
 This repository contains the source code for the Fastway project.
