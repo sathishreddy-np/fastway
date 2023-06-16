@@ -38,24 +38,26 @@ class Coingecko extends Command
             # This is used to show progress bar while processing.
             $bar = $this->output->createProgressBar(count($coins));
             $bar->start();
-            foreach ($coins as $coin) {
-                # This will avoid storing duplicates in table.
-                $exists = Bitcoin::select('bitcoin_id')->where('bitcoin_id', $coin['id'])->exists();
-                if (!$exists) {
-                    $bitcoin = new Bitcoin();
-                    $bitcoin->bitcoin_id = $coin['id'];
-                    $bitcoin->symbol = $coin['symbol'];
-                    $bitcoin->name = $coin['name'];
-                    foreach ($coin["platforms"] as $name => $token) {
-                        $bitcoin->platform = $name; # Nullable Column
-                        $bitcoin->token = $token; # Nullable Column
+            if(count($coins) > 0){
+                foreach ($coins as $coin) {
+                    # This will avoid storing duplicates in table.
+                    $exists = Bitcoin::select('bitcoin_id')->where('bitcoin_id', $coin['id'])->exists();
+                    if (!$exists) {
+                        $bitcoin = new Bitcoin();
+                        $bitcoin->bitcoin_id = $coin['id'];
+                        $bitcoin->symbol = $coin['symbol'];
+                        $bitcoin->name = $coin['name'];
+                        foreach ($coin["platforms"] as $name => $token) {
+                            $bitcoin->platform = $name; # Nullable Column
+                            $bitcoin->token = $token; # Nullable Column
+                        }
+                        $bitcoin->save();
                     }
-                    $bitcoin->save();
-                }
 
-                $bar->advance();
+                    $bar->advance();
+                }
+                $bar->finish();
             }
-            $bar->finish();
         } catch (\Exception $e) {
             # This will Log the message if the command scheduled.
             Log::error("Coingecko Command Error : " . $e->getMessage());
