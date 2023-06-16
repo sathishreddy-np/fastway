@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('bitcoins', function (Blueprint $table) {
             $table->id();
-            $table->string('bitcoin_id');
-            $table->string('symbol');
-            $table->string('name');
-            $table->string('platform')->nullable();
-            $table->string('token')->nullable();
+            $table->string('bitcoin_id',55);
+            $table->string('symbol',55);
+            $table->string('name',55);
+            $table->string('platform',55)->nullable();
+            $table->string('token',255)->nullable();
             $table->timestamps();
         });
     }
