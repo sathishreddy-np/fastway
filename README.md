@@ -1,5 +1,3 @@
-Apologies for the confusion earlier. If you'd like to format those lines in a more visually appealing way, you can use a table format. Here's an updated version with a table format for the `.env` file changes:
-
 ```markdown
 # Fastway
 
