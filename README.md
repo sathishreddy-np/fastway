@@ -47,3 +47,8 @@ php artisan store:coingecko
 2023_06_16_135314_create_bitcoins_table.php
 ```
 
+```shell
+# Laravel Artisan Command File Name
+Coingecko.php
+```
+
