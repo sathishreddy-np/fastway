@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bitcoins', function (Blueprint $table) {
+        Schema::create('bit_tokens', function (Blueprint $table) {
             $table->id();
-            $table->string('coin_id',55)->unique();
-            $table->string('symbol',55);
-            $table->string('name',55);
+            $table->foreignId('bitcoin_id')->references('id')->on('bitcoins');
+            $table->string('platform',55);
+            $table->string('token',255)->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bitcoins');
+        Schema::dropIfExists('bit_tokens');
     }
 };

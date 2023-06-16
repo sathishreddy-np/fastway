@@ -43,8 +43,9 @@ php artisan store:coingecko
 
 
 ```shell
-# Database schema migration file name
+# Database schema migration file names
 2023_06_16_135314_create_bitcoins_table.php
+2023_06_16_171106_create_bit_tokens_table.php
 ```
 
 ```shell

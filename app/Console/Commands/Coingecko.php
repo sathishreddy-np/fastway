@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Bitcoin;
+use App\Models\BitToken;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -41,17 +42,23 @@ class Coingecko extends Command
             if(count($coins) > 0){
                 foreach ($coins as $coin) {
                     # This will avoid storing duplicates in table.
-                    $exists = Bitcoin::select('bitcoin_id')->where('bitcoin_id', $coin['id'])->exists();
+                    $exists = Bitcoin::select('coin_id')->where('coin_id', $coin['id'])->exists();
                     if (!$exists) {
                         $bitcoin = new Bitcoin();
-                        $bitcoin->bitcoin_id = $coin['id'];
+                        $bitcoin->coin_id = $coin['id'];
                         $bitcoin->symbol = $coin['symbol'];
                         $bitcoin->name = $coin['name'];
-                        foreach ($coin["platforms"] as $name => $token) {
-                            $bitcoin->platform = $name; # Nullable Column
-                            $bitcoin->token = $token; # Nullable Column
-                        }
                         $bitcoin->save();
+
+                        if(count($coin["platforms"]) > 0){
+                            foreach ($coin["platforms"] as $name => $token) {
+                                $bit_token = new BitToken();
+                                $bit_token->bitcoin_id = $bitcoin->id;
+                                $bit_token->platform = $name;
+                                $bit_token->token = $token; #  Nullable Column
+                                $bit_token->save();
+                            }
+                        }
                     }
 
                     $bar->advance();
