@@ -35,6 +35,7 @@ class Coingecko extends Command
     {
         try {
             $coins = Http::get("https://api.coingecko.com/api/v3/coins/list?include_platform=true")->json();
+            # This is used to show progress bar while processing.
             $bar = $this->output->createProgressBar(count($coins));
             $bar->start();
             foreach ($coins as $coin) {
